@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth']], function(){
-Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.index');
+Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
+Route::resource('/category', 'CategoryController',['as'=>'admin'])->names('admin.category');
 });
 
 
