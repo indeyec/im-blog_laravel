@@ -19,17 +19,19 @@ class CategoryController extends Controller
    
     public function create()
     {
-        return view('admin.categories.create');
+        return view('admin.categories.create', [
+            'category' => [],
+            'categories' => Category::with('children')->where('parent_id','0')->get(),
+            'delimiter' => ''
+        ]);
     }
 
   
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->input('name');
-        $category->save();
+        Category::create($request->all());
     
-        return redirect()->route('categories.index')->with('success', 'Category created successfully');
+        return redirect()->route('admin.category.index');
     }
 
    
