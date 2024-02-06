@@ -1,24 +1,18 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth']], function(){
+use App\Http\Controllers\HomeController;
+
+
+
+
+Route::group(['prefix'=>'admin', 'namespace'=>'App\Http\Controllers\Admin', 'middleware'=>['auth']], function(){
 Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
-Route::resource('/category', 'CategoryController',['as'=>'admin'])->names('admin.category');
+Route::resource('/category', CategoryController::class)->names('admin.category');
+
 });
-
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,4 +20,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/categories/{category}', [CategoryController::class,'show'])->name('categories.show');
+Route::get('/categories/{category}/edit', [CategoryController::class,'edit'])->name('categories.edit');
+Route::put('/categories/{category}', [CategoryController::class,'update'])->name('categories.update');
+Route::delete('/categories/{category}', [CategoryController::class,'destroy'])->name('categories.destroy');

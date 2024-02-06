@@ -12,6 +12,10 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -31,11 +35,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"
                          role="button" aria-expanded="false">Блог</a>
                         <ul class="dropdown-menu" role="menu">
 
-                        <li><a href="#">Категории</a></li>
+                        <li><a href="{{route('admin.category.index')}}">Категории</a></li>
                         <li><a href="#">Материалы</a></li>
                         </ul>
                         </li>
