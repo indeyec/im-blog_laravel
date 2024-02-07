@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
 
@@ -11,6 +12,7 @@ use App\Http\Controllers\HomeController;
 Route::group(['prefix'=>'admin', 'namespace'=>'App\Http\Controllers\Admin', 'middleware'=>['auth']], function(){
 Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
 Route::resource('/category', CategoryController::class)->names('admin.category');
+Route::resource('/article', ArticleController::class)->names('admin.article');
 
 });
 
